@@ -1,8 +1,20 @@
 package vos.desktop.ui.access;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.mysql.cj.x.protobuf.MysqlxNotice.Warning.Level;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.lang.System.Logger;
+import java.net.URI;
+import java.net.URISyntaxException;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.ColorUIResource;
 import vos.desktop.database.DatabaseHandler;
 import vos.desktop.main.MainFrame;
@@ -14,12 +26,30 @@ public class LoginFrame extends javax.swing.JFrame {
     DatabaseHandler handler = null;
     UIManager uim = new UIManager();
 
+    // Constructor for LoginFrame
     public LoginFrame() {
         handler = DatabaseHandler.getInstance();
         initComponents();
+        
+        setTitle("Visual OETPN Simulator - Desktop Application (Log In)");
+        WelcomeText.setFocusable(false);
+        
+        // Set the hyperlinks
+        setHomepageHyperlink();
+        setAboutOETPNHyperlink();
+        setAboutVOSHyperlink();
+        setGithubProfileHyperlink();
+        setLinkedinProfileHyperlink();
+        setEmailOption();
+        
+        // Set the placeholders and visibility of the stars
         setLFEmailFieldText();
         setLFPassFieldText();
         setStarsInvisible();
+        
+        // Setup the frame (center location & visibility)
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
     
     // Set the stars invisible
@@ -28,20 +58,14 @@ public class LoginFrame extends javax.swing.JFrame {
         LFPassStar.setVisible(false);
     }
     
-    // Set the stars
-    private void setStarsVisible(boolean flag) {
-        LFEmailStar.setVisible(flag);
-        LFPassStar.setVisible(flag);
-    }
-    
     // Mark the empty fields
     private boolean markEmptyFields() {
         boolean isEmpty = false;
-        if(LFEmailField.getForeground() == Color.gray) {
+        if(LFEmailField.getText().isEmpty() || LFEmailField.getForeground() == Color.gray) {
             isEmpty = true;
             LFEmailStar.setVisible(true);
         }
-        if(LFPassField.getForeground() == Color.gray) {
+        if(String.valueOf(LFPassField.getPassword()).isEmpty() || LFPassField.getForeground() == Color.gray) {
             isEmpty = true;
             LFPassStar.setVisible(true);
         }
@@ -69,24 +93,39 @@ public class LoginFrame extends javax.swing.JFrame {
         LoginButton = new javax.swing.JButton();
         NoAccButton = new javax.swing.JButton();
         WVOS_Login = new javax.swing.JPanel();
+        WVOS_Welcome = new javax.swing.JLabel();
+        WVOS_DesktopApp = new javax.swing.JLabel();
+        WVOS_Text = new javax.swing.JScrollPane();
+        WelcomeText = new javax.swing.JTextArea();
+        TextAboutOETPN = new javax.swing.JLabel();
+        AboutOETPN = new javax.swing.JLabel();
+        TextAboutVOS = new javax.swing.JLabel();
+        AboutVOS = new javax.swing.JLabel();
+        TextAboutCreator1 = new javax.swing.JLabel();
+        TextAboutCreator2 = new javax.swing.JLabel();
+        TextAboutCreator3 = new javax.swing.JLabel();
+        GitHub = new javax.swing.JLabel();
+        LinkedIn = new javax.swing.JLabel();
+        TextEmail1 = new javax.swing.JLabel();
+        TextEmail2 = new javax.swing.JLabel();
+        Email = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
 
         LoginForm.setBackground(new java.awt.Color(51, 51, 51));
 
         LFText.setBackground(new java.awt.Color(51, 51, 51));
 
-        LFMessage1.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
-        LFMessage1.setForeground(new java.awt.Color(255, 255, 255));
+        LFMessage1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         LFMessage1.setText("Log In");
 
-        LFMessage2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        LFMessage2.setForeground(new java.awt.Color(255, 255, 255));
+        LFMessage2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LFMessage2.setText("to start using VOS Desktop Application");
 
         javax.swing.GroupLayout LFTextLayout = new javax.swing.GroupLayout(LFText);
@@ -94,14 +133,13 @@ public class LoginFrame extends javax.swing.JFrame {
         LFTextLayout.setHorizontalGroup(
             LFTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LFTextLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(LFTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LFMessage2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LFTextLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(LFMessage1)
-                        .addGap(82, 82, 82)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LFMessage2)
+                .addGap(19, 19, 19))
+            .addGroup(LFTextLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(LFMessage1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LFTextLayout.setVerticalGroup(
             LFTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,15 +153,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
         LFUserData.setBackground(new java.awt.Color(51, 51, 51));
 
-        LFEmailLabel.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        LFEmailLabel.setForeground(new java.awt.Color(255, 255, 255));
+        LFEmailLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         LFEmailLabel.setText("E-mail");
 
-        LFEmailField.setBackground(new java.awt.Color(204, 204, 204));
-        LFEmailField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        LFEmailField.setForeground(java.awt.Color.gray);
-        LFEmailField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        LFEmailField.setSelectionColor(new java.awt.Color(255, 102, 0));
+        LFEmailField.setBackground(java.awt.Color.darkGray);
+        LFEmailField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         LFEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 LFEmailFieldFocusGained(evt);
@@ -133,15 +167,11 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        LFPassLabel.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        LFPassLabel.setForeground(new java.awt.Color(255, 255, 255));
+        LFPassLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         LFPassLabel.setText("Password");
 
-        LFPassField.setBackground(new java.awt.Color(204, 204, 204));
-        LFPassField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        LFPassField.setForeground(java.awt.Color.gray);
-        LFPassField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        LFPassField.setSelectionColor(new java.awt.Color(255, 102, 0));
+        LFPassField.setBackground(java.awt.Color.darkGray);
+        LFPassField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         LFPassField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 LFPassFieldFocusGained(evt);
@@ -151,12 +181,10 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        LFEmailStar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        LFEmailStar.setForeground(new java.awt.Color(255, 153, 0));
+        LFEmailStar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LFEmailStar.setText("*");
 
-        LFPassStar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        LFPassStar.setForeground(new java.awt.Color(255, 153, 0));
+        LFPassStar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LFPassStar.setText("*");
 
         javax.swing.GroupLayout LFUserDataLayout = new javax.swing.GroupLayout(LFUserData);
@@ -164,19 +192,19 @@ public class LoginFrame extends javax.swing.JFrame {
         LFUserDataLayout.setHorizontalGroup(
             LFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LFUserDataLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addGroup(LFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(LFEmailLabel)
-                    .addComponent(LFPassLabel))
+                    .addComponent(LFPassLabel)
+                    .addComponent(LFEmailLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(LFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(LFPassField, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                    .addComponent(LFPassField, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                     .addComponent(LFEmailField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(LFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LFPassStar)
-                    .addComponent(LFEmailStar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LFEmailStar)
+                    .addComponent(LFPassStar))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         LFUserDataLayout.setVerticalGroup(
             LFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,41 +219,26 @@ public class LoginFrame extends javax.swing.JFrame {
                     .addComponent(LFPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LFPassLabel)
                     .addComponent(LFPassStar))
-                .addGap(14, 14, 14))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         LFButtons.setBackground(new java.awt.Color(51, 51, 51));
 
-        LoginButton.setBackground(new java.awt.Color(102, 102, 102));
-        LoginButton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        LoginButton.setForeground(new java.awt.Color(255, 255, 255));
-        LoginButton.setText("Login");
-        LoginButton.setAutoscrolls(true);
-        LoginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        LoginButton.setDoubleBuffered(true);
-        LoginButton.setFocusCycleRoot(true);
-        LoginButton.setFocusTraversalPolicyProvider(true);
-        LoginButton.setHideActionText(true);
-        LoginButton.setInheritsPopupMenu(true);
-        LoginButton.setOpaque(true);
+        LoginButton.setBackground(java.awt.Color.darkGray);
+        LoginButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LoginButton.setText("Log In");
+        LoginButton.setBorderPainted(false);
+        LoginButton.setRequestFocusEnabled(false);
         LoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginButtonActionPerformed(evt);
             }
         });
 
-        NoAccButton.setBackground(new java.awt.Color(102, 102, 102));
-        NoAccButton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        NoAccButton.setForeground(new java.awt.Color(255, 255, 255));
-        NoAccButton.setText("Don't have an account? Sign Up");
-        NoAccButton.setAutoscrolls(true);
-        NoAccButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        NoAccButton.setDoubleBuffered(true);
-        NoAccButton.setFocusCycleRoot(true);
-        NoAccButton.setFocusTraversalPolicyProvider(true);
-        NoAccButton.setHideActionText(true);
-        NoAccButton.setInheritsPopupMenu(true);
-        NoAccButton.setOpaque(true);
+        NoAccButton.setBackground(java.awt.Color.darkGray);
+        NoAccButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        NoAccButton.setText("Don't have an account? Sign up");
+        NoAccButton.setBorderPainted(false);
         NoAccButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NoAccButtonActionPerformed(evt);
@@ -239,10 +252,10 @@ public class LoginFrame extends javax.swing.JFrame {
             .addGroup(LFButtonsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(LFButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NoAccButton)
-                    .addGroup(LFButtonsLayout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(LoginButton)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LFButtonsLayout.createSequentialGroup()
+                        .addComponent(LoginButton)
+                        .addGap(73, 73, 73))
+                    .addComponent(NoAccButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         LFButtonsLayout.setVerticalGroup(
@@ -259,42 +272,151 @@ public class LoginFrame extends javax.swing.JFrame {
         LoginForm.setLayout(LoginFormLayout);
         LoginFormLayout.setHorizontalGroup(
             LoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginFormLayout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addComponent(LFButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
             .addGroup(LoginFormLayout.createSequentialGroup()
                 .addGroup(LoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginFormLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(LFText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(LoginFormLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(LFButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addComponent(LFUserData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(15, 15, 15)
+                        .addComponent(LFText, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LoginFormLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(LFUserData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LoginFormLayout.setVerticalGroup(
             LoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LoginFormLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(LFText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
+                .addComponent(LFText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
                 .addComponent(LFUserData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(37, 37, 37)
                 .addComponent(LFButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         WVOS_Login.setBackground(new java.awt.Color(51, 51, 51));
         WVOS_Login.setForeground(new java.awt.Color(255, 255, 255));
 
+        WVOS_Welcome.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        WVOS_Welcome.setText("Visual OETPN Simulator (VOS)");
+
+        WVOS_DesktopApp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        WVOS_DesktopApp.setText("Desktop Application");
+
+        WelcomeText.setEditable(false);
+        WelcomeText.setBackground(java.awt.Color.darkGray);
+        WelcomeText.setColumns(20);
+        WelcomeText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        WelcomeText.setRows(5);
+        WelcomeText.setText("Visual OETPN Simulator (short: VOS) is an open-source tool that helps students learning in \ntechnical fields to understand, design and simulate Object-Enhanced Timed Petri Nets (OETPNs).\n\nVisual OETPN Simulator was developed by Automation and Applied Informatics student, Dragu \nAndreea, as a bachelor's thesis, including researches on Petri Nets (specifically OETPNs) and \nDesktop Development technologies and programming languages (Java, Swing, MySQL).\n\nAnd, the most important thing of all, Visual OETPN Simulator is completely free to use. The user \nmust create a new account to start using the tool, or if they already have an account, they must \nlog into their account.");
+        WelcomeText.setCaretColor(new java.awt.Color(0, 0, 0));
+        WelcomeText.setFocusable(false);
+        WVOS_Text.setViewportView(WelcomeText);
+
+        TextAboutOETPN.setText("To find out more about Petri Nets and OETPNs, please visit");
+
+        AboutOETPN.setText("VOS Web - About OETPNs.");
+
+        TextAboutVOS.setText("To find out more about Visual OETPN Simulator, please visit");
+
+        AboutVOS.setText("VOS Web - About VOS.");
+
+        TextAboutCreator1.setText("To find out more about the creator of this tool, please visit my");
+
+        TextAboutCreator2.setText("or");
+
+        TextAboutCreator3.setText("profiles.");
+
+        GitHub.setText("GitHub");
+
+        LinkedIn.setText("LinkedIn");
+
+        TextEmail1.setText("Or,");
+
+        TextEmail2.setText("me directly.");
+
+        Email.setText("e-mail");
+
         javax.swing.GroupLayout WVOS_LoginLayout = new javax.swing.GroupLayout(WVOS_Login);
         WVOS_Login.setLayout(WVOS_LoginLayout);
         WVOS_LoginLayout.setHorizontalGroup(
             WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 666, Short.MAX_VALUE)
+            .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(WVOS_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WVOS_LoginLayout.createSequentialGroup()
+                .addGap(12, 29, Short.MAX_VALUE)
+                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                        .addComponent(TextAboutOETPN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AboutOETPN))
+                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                        .addComponent(TextAboutVOS)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AboutVOS))
+                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                        .addComponent(TextAboutCreator1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(GitHub)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextAboutCreator2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LinkedIn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextAboutCreator3))
+                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                        .addComponent(TextEmail1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Email)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextEmail2)))
+                .addGap(140, 140, 140))
+            .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(WVOS_Welcome))
+                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(WVOS_DesktopApp)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         WVOS_LoginLayout.setVerticalGroup(
             WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
+            .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(WVOS_Welcome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(WVOS_DesktopApp)
+                .addGap(18, 18, 18)
+                .addComponent(WVOS_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextAboutOETPN)
+                    .addComponent(AboutOETPN))
+                .addGap(18, 18, 18)
+                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextAboutVOS)
+                    .addComponent(AboutVOS))
+                .addGap(18, 18, 18)
+                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextAboutCreator1)
+                    .addComponent(GitHub)
+                    .addComponent(TextAboutCreator2)
+                    .addComponent(LinkedIn)
+                    .addComponent(TextAboutCreator3))
+                .addGap(18, 18, 18)
+                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextEmail1)
+                    .addComponent(TextEmail2)
+                    .addComponent(Email))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,9 +424,9 @@ public class LoginFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(WVOS_Login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(LoginForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(WVOS_Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LoginForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +450,7 @@ public class LoginFrame extends javax.swing.JFrame {
         setLFEmailFieldText();
     }//GEN-LAST:event_LFEmailFieldFocusLost
 
-    // Event for Pass Field (focus gained)
+    // Event for Pass field (focus gained)
     private void LFPassFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LFPassFieldFocusGained
         if(LFPassField.getForeground() == Color.gray) {
             LFPassField.setText("");
@@ -337,12 +459,35 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_LFPassFieldFocusGained
 
-    // Event for Pass Field (focus lost)
+    // Event for Pass field (focus lost)
     private void LFPassFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LFPassFieldFocusLost
         setLFPassFieldText();
     }//GEN-LAST:event_LFPassFieldFocusLost
 
-    // Open the Signup Form by pressing "Don't Have An Account?" Button
+    // Event for Log In button (action performed - logs the user into the tool)
+    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+        setStarsInvisible();
+        if(markEmptyFields()) {
+            setJOptionPane();
+            JOptionPane.showMessageDialog(null, "Please enter all fields!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if((userID = handler.checkCredentials(LFEmailField.getText(), String.valueOf(LFPassField.getPassword()))) > 0) {
+            setJOptionPane();
+            JOptionPane.showMessageDialog(null, "Log In Successful! \nWelcome to VOS!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            MainFrame main = new MainFrame();
+            main.pack();
+            main.setLocationRelativeTo(null);
+            main.setVisible(true);
+            this.dispose();
+        }
+        else {
+            setJOptionPane();
+            JOptionPane.showMessageDialog(null, "Wrong username or password!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_LoginButtonActionPerformed
+
+    // Event for NoAcc button (action performed - opens the Sign Up form)
     private void NoAccButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoAccButtonActionPerformed
         SignupFrame signupFrame = new SignupFrame();
         signupFrame.pack();
@@ -351,35 +496,12 @@ public class LoginFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_NoAccButtonActionPerformed
 
-    // Event for the Login Button
-    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        setStarsVisible(false);
-        if(markEmptyFields()) {
-            setJOptionPane();
-            JOptionPane.showMessageDialog(null, "Please enter all fields!", "", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if((userID = handler.checkCredentials(LFEmailField.getText(), String.valueOf(LFPassField.getPassword()))) > 0) {
-            setJOptionPane();
-            JOptionPane.showMessageDialog(null, "Log In Successful!", "Success!", JOptionPane.INFORMATION_MESSAGE);
-            MainFrame main = new MainFrame();
-            main.pack();
-            main.setLocationRelativeTo(null);
-            main.setVisible(true);
-            this.dispose();
-        }
-        else {
-            
-            JOptionPane.showMessageDialog(null, "Wrong username or password!", "Error!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_LoginButtonActionPerformed
-
     // Function to setup the JOptionPane
     private void setJOptionPane() {
         uim.put("OptionPane.background",new ColorUIResource(51,51,51));
         uim.put("Panel.background",new ColorUIResource(51,51,51));
         uim.put("OptionPane.messageForeground", Color.white);
-        uim.put("Button.background", Color.gray);
+        uim.put("Button.background", Color.darkGray);
         uim.put("Button.foreground", Color.white);
     }
     
@@ -394,22 +516,131 @@ public class LoginFrame extends javax.swing.JFrame {
     // Function to set the Password field's text (focus gained / lost)
     private void setLFPassFieldText() {
         if(String.valueOf(LFPassField.getPassword()).isEmpty()) {
-            LFPassField.setEchoChar((char) 0);
+            LFPassField.setEchoChar('*');
             LFPassField.setText("Password");
             LFPassField.setForeground(Color.gray);
         }
     }
     
+    // Set homepage hyperlink
+    private void setHomepageHyperlink() {
+        WVOS_Welcome.setForeground(Color.orange.darker());
+        WVOS_Welcome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        WVOS_Welcome.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://visual-oetpn-simulator.netlify.app/index.html"));
+                }
+                catch(IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    // Set About OETPN hyperlink
+    private void setAboutOETPNHyperlink() {
+        AboutOETPN.setForeground(Color.orange.darker());
+        AboutOETPN.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        AboutOETPN.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://visual-oetpn-simulator.netlify.app/pages/about-oetpns.html"));
+                }
+                catch(IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                } 
+            }
+        });
+    }
+    
+    // Set About VOS hyperlink
+    private void setAboutVOSHyperlink() {
+        AboutVOS.setForeground(Color.orange.darker());
+        AboutVOS.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        AboutVOS.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://visual-oetpn-simulator.netlify.app/pages/about-vos.html"));
+                }
+                catch(IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    // Set Github profile hyperlink
+    private void setGithubProfileHyperlink() {
+        GitHub.setForeground(Color.orange.darker());
+        GitHub.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        GitHub.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/draguleee"));
+                }
+                catch(IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    // Set Linkedin profile hyperlink
+    private void setLinkedinProfileHyperlink() {
+        LinkedIn.setForeground(Color.orange.darker());
+        LinkedIn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        LinkedIn.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/andreea-ioana-dragu-870a121a1/"));
+                }
+                catch(IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    // Set E-mail option
+    private void setEmailOption() {
+        Email.setForeground(Color.orange.darker());
+        Email.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        Email.addMouseListener(new MouseAdapter() {
+           public void mouseClicked(MouseEvent e) {
+               try {
+                   String message = "mailto:aandreid14@gmail.com";
+                   URI uri = URI.create(message);
+                   Desktop.getDesktop().mail(uri);
+               }
+               catch(IOException ex) {
+                   ex.printStackTrace();
+               }
+           } 
+        });
+    }
+            
     // Main method
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginFrame().setVisible(true);
+                try {
+                    UIManager.setLookAndFeel(new FlatDarkLaf());
+                }
+                catch (UnsupportedLookAndFeelException ex) {
+                    System.out.println(" ");
+                }
+                LoginFrame.setDefaultLookAndFeelDecorated(true);
+                new LoginFrame();
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AboutOETPN;
+    private javax.swing.JLabel AboutVOS;
+    private javax.swing.JLabel Email;
+    private javax.swing.JLabel GitHub;
     private javax.swing.JPanel LFButtons;
     private javax.swing.JTextField LFEmailField;
     private javax.swing.JLabel LFEmailLabel;
@@ -421,10 +652,22 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel LFPassStar;
     private javax.swing.JPanel LFText;
     private javax.swing.JPanel LFUserData;
+    private javax.swing.JLabel LinkedIn;
     private javax.swing.JButton LoginButton;
     private javax.swing.JPanel LoginForm;
     private javax.swing.JButton NoAccButton;
+    private javax.swing.JLabel TextAboutCreator1;
+    private javax.swing.JLabel TextAboutCreator2;
+    private javax.swing.JLabel TextAboutCreator3;
+    private javax.swing.JLabel TextAboutOETPN;
+    private javax.swing.JLabel TextAboutVOS;
+    private javax.swing.JLabel TextEmail1;
+    private javax.swing.JLabel TextEmail2;
+    private javax.swing.JLabel WVOS_DesktopApp;
     private javax.swing.JPanel WVOS_Login;
+    private javax.swing.JScrollPane WVOS_Text;
+    private javax.swing.JLabel WVOS_Welcome;
+    private javax.swing.JTextArea WelcomeText;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

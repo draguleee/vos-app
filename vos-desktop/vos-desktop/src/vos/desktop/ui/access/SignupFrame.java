@@ -1,9 +1,22 @@
 package vos.desktop.ui.access;
 
-import java.awt.*;
-import javax.swing.*;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.mysql.cj.x.protobuf.MysqlxNotice.Warning.Level;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.lang.System.Logger;
+import java.net.URI;
+import java.net.URISyntaxException;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.ColorUIResource;
 import vos.desktop.database.DatabaseHandler;
+import vos.desktop.main.MainFrame;
 
 public class SignupFrame extends javax.swing.JFrame {
 
@@ -11,10 +24,26 @@ public class SignupFrame extends javax.swing.JFrame {
     DatabaseHandler handler = null;
     UIManager uim = new UIManager();
     
+    // Constructor for SignupFrame
     public SignupFrame() {
         handler = DatabaseHandler.getInstance();
-        initComponents();        
+        initComponents();   
+        
+        setTitle("Visual OETPN Simulator - Desktop Application (Sign Up)");
+        WelcomeText.setFocusable(false);
+        
+        // Set the hyperlinks
+        setHomepageHyperlink();
+        setAboutOETPNHyperlink();
+        setAboutVOSHyperlink();
+        setGithubProfileHyperlink();
+        setLinkedinProfileHyperlink();
+        setEmailOption();
+        
+        // Setup the frame (center location & visibility)
         setStarsInvisible();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
     
     // Set the stars invisible
@@ -26,12 +55,7 @@ public class SignupFrame extends javax.swing.JFrame {
         SFRepPassStar.setVisible(false);
     }
     
-    /**
-     * Function name: markEmptyFields()
-     * @return
-     * true - if there is at least one empty field <br>
-     * false - if there are no empty fields
-     */
+    // Mark the empty fields
     private boolean markEmptyFields() {
         boolean isEmpty = false;
         if(SFFNameField.getText().isEmpty()) {
@@ -61,15 +85,6 @@ public class SignupFrame extends javax.swing.JFrame {
     private boolean matchingPasswords() {
         return (String.valueOf(SFRepPassField.getPassword()).equals(String.valueOf(SFPassField.getPassword())));
     }
-
-    // Set the stars
-    private void setStarsVisible(boolean flag) {
-        SFFNameStar.setVisible(flag);
-        SFLNameStar.setVisible(flag);
-        SFEmailStar.setVisible(flag);
-        SFPassStar.setVisible(flag);
-        SFRepPassStar.setVisible(flag);
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -97,8 +112,24 @@ public class SignupFrame extends javax.swing.JFrame {
         SFRepPassStar = new javax.swing.JLabel();
         LFButtons = new javax.swing.JPanel();
         SignupButton = new javax.swing.JButton();
-        NoAccButton = new javax.swing.JButton();
+        HaveAccButton = new javax.swing.JButton();
         WVOS_Signup = new javax.swing.JPanel();
+        WVOS_Welcome = new javax.swing.JLabel();
+        WVOS_DesktopApp = new javax.swing.JLabel();
+        WVOS_Text = new javax.swing.JScrollPane();
+        WelcomeText = new javax.swing.JTextArea();
+        TextAboutOETPN = new javax.swing.JLabel();
+        AboutOETPN = new javax.swing.JLabel();
+        TextAboutVOS = new javax.swing.JLabel();
+        AboutVOS = new javax.swing.JLabel();
+        TextAboutCreator1 = new javax.swing.JLabel();
+        GitHub = new javax.swing.JLabel();
+        TextAboutCreator2 = new javax.swing.JLabel();
+        LinkedIn = new javax.swing.JLabel();
+        TextAboutCreator3 = new javax.swing.JLabel();
+        TextEmail1 = new javax.swing.JLabel();
+        Email = new javax.swing.JLabel();
+        TextEmail2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -108,12 +139,10 @@ public class SignupFrame extends javax.swing.JFrame {
 
         SFText.setBackground(new java.awt.Color(51, 51, 51));
 
-        SFMessage1.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
-        SFMessage1.setForeground(new java.awt.Color(255, 255, 255));
+        SFMessage1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         SFMessage1.setText("Sign Up");
 
-        SFMessage2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        SFMessage2.setForeground(new java.awt.Color(255, 255, 255));
+        SFMessage2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         SFMessage2.setText("to start using VOS Desktop Application");
 
         javax.swing.GroupLayout SFTextLayout = new javax.swing.GroupLayout(SFText);
@@ -121,13 +150,14 @@ public class SignupFrame extends javax.swing.JFrame {
         SFTextLayout.setHorizontalGroup(
             SFTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SFTextLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(SFMessage2)
-                .addGap(38, 38, 38))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SFTextLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SFMessage1)
-                .addGap(92, 92, 92))
+                .addGroup(SFTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SFTextLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(SFMessage2))
+                    .addGroup(SFTextLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(SFMessage1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         SFTextLayout.setVerticalGroup(
             SFTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,109 +171,49 @@ public class SignupFrame extends javax.swing.JFrame {
 
         SFUserData.setBackground(new java.awt.Color(51, 51, 51));
 
-        SFFNameLabel.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        SFFNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        SFFNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SFFNameLabel.setText("First Name");
 
-        SFFNameField.setBackground(new java.awt.Color(204, 204, 204));
-        SFFNameField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        SFFNameField.setForeground(new java.awt.Color(255, 255, 255));
-        SFFNameField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        SFFNameField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                SFFNameFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                SFFNameFieldFocusLost(evt);
-            }
-        });
+        SFFNameField.setBackground(java.awt.Color.darkGray);
+        SFFNameField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        SFLNameLabel.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        SFLNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        SFLNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SFLNameLabel.setText("Last Name");
 
-        SFLNameField.setBackground(new java.awt.Color(204, 204, 204));
-        SFLNameField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        SFLNameField.setForeground(new java.awt.Color(255, 255, 255));
-        SFLNameField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        SFLNameField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                SFLNameFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                SFLNameFieldFocusLost(evt);
-            }
-        });
+        SFLNameField.setBackground(java.awt.Color.darkGray);
+        SFLNameField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        SFEmailLabel.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        SFEmailLabel.setForeground(new java.awt.Color(255, 255, 255));
+        SFEmailLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SFEmailLabel.setText("E-mail");
 
-        SFEmailField.setBackground(new java.awt.Color(204, 204, 204));
-        SFEmailField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        SFEmailField.setForeground(new java.awt.Color(255, 255, 255));
-        SFEmailField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        SFEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                SFEmailFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                SFEmailFieldFocusLost(evt);
-            }
-        });
+        SFEmailField.setBackground(java.awt.Color.darkGray);
+        SFEmailField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        SFPassLabel.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        SFPassLabel.setForeground(new java.awt.Color(255, 255, 255));
+        SFPassLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SFPassLabel.setText("Password");
 
-        SFPassField.setBackground(new java.awt.Color(204, 204, 204));
-        SFPassField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        SFPassField.setForeground(new java.awt.Color(255, 255, 255));
-        SFPassField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        SFPassField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                SFPassFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                SFPassFieldFocusLost(evt);
-            }
-        });
+        SFPassField.setBackground(java.awt.Color.darkGray);
+        SFPassField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        SFRepPassLabel.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        SFRepPassLabel.setForeground(new java.awt.Color(255, 255, 255));
+        SFRepPassLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SFRepPassLabel.setText("Confirm");
 
-        SFRepPassField.setBackground(new java.awt.Color(204, 204, 204));
-        SFRepPassField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        SFRepPassField.setForeground(new java.awt.Color(255, 255, 255));
-        SFRepPassField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        SFRepPassField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                SFRepPassFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                SFRepPassFieldFocusLost(evt);
-            }
-        });
+        SFRepPassField.setBackground(java.awt.Color.darkGray);
+        SFRepPassField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        SFFNameStar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        SFFNameStar.setForeground(new java.awt.Color(255, 102, 0));
+        SFFNameStar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SFFNameStar.setText("*");
 
-        SFLNameStar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        SFLNameStar.setForeground(new java.awt.Color(255, 102, 0));
+        SFLNameStar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SFLNameStar.setText("*");
 
-        SFEmailStar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        SFEmailStar.setForeground(new java.awt.Color(255, 102, 0));
+        SFEmailStar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SFEmailStar.setText("*");
 
-        SFPassStar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        SFPassStar.setForeground(new java.awt.Color(255, 102, 0));
+        SFPassStar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SFPassStar.setText("*");
 
-        SFRepPassStar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        SFRepPassStar.setForeground(new java.awt.Color(255, 102, 0));
+        SFRepPassStar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SFRepPassStar.setText("*");
 
         javax.swing.GroupLayout SFUserDataLayout = new javax.swing.GroupLayout(SFUserData);
@@ -251,34 +221,28 @@ public class SignupFrame extends javax.swing.JFrame {
         SFUserDataLayout.setHorizontalGroup(
             SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SFUserDataLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SFFNameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SFLNameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SFEmailLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SFPassLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SFRepPassLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SFFNameField)
+                    .addComponent(SFLNameField)
+                    .addComponent(SFEmailField)
+                    .addComponent(SFPassField)
+                    .addComponent(SFRepPassField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SFLNameStar)
-                    .addGroup(SFUserDataLayout.createSequentialGroup()
-                        .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SFFNameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(SFLNameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(SFEmailLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(SFPassLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(SFRepPassLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(SFPassField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                            .addComponent(SFEmailField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SFLNameField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SFFNameField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SFRepPassField))
-                        .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(SFUserDataLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(SFFNameStar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SFUserDataLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(SFEmailStar, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(SFPassStar, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(SFRepPassStar, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                .addGap(32, 32, 32))
+                    .addComponent(SFFNameStar)
+                    .addComponent(SFEmailStar)
+                    .addComponent(SFPassStar)
+                    .addComponent(SFRepPassStar))
+                .addGap(42, 42, 42))
         );
         SFUserDataLayout.setVerticalGroup(
             SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,68 +250,50 @@ public class SignupFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SFFNameLabel)
-                    .addComponent(SFFNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SFFNameStar))
-                .addGap(12, 12, 12)
+                    .addComponent(SFFNameStar)
+                    .addComponent(SFFNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SFLNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SFLNameStar)
-                    .addComponent(SFLNameLabel))
+                    .addComponent(SFLNameLabel)
+                    .addComponent(SFLNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SFEmailLabel)
-                    .addComponent(SFEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SFEmailStar))
+                    .addComponent(SFEmailStar)
+                    .addComponent(SFEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SFPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SFPassStar)
-                    .addComponent(SFPassLabel))
+                    .addComponent(SFPassLabel)
+                    .addComponent(SFPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(SFUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SFRepPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SFRepPassStar)
-                    .addComponent(SFRepPassLabel))
+                    .addComponent(SFRepPassLabel)
+                    .addComponent(SFRepPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
         LFButtons.setBackground(new java.awt.Color(51, 51, 51));
 
-        SignupButton.setBackground(new java.awt.Color(102, 102, 102));
-        SignupButton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        SignupButton.setForeground(new java.awt.Color(255, 255, 255));
-        SignupButton.setText("Signup");
-        SignupButton.setToolTipText("");
-        SignupButton.setAutoscrolls(true);
-        SignupButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        SignupButton.setDoubleBuffered(true);
-        SignupButton.setFocusCycleRoot(true);
-        SignupButton.setFocusTraversalPolicyProvider(true);
-        SignupButton.setHideActionText(true);
-        SignupButton.setInheritsPopupMenu(true);
-        SignupButton.setVerifyInputWhenFocusTarget(false);
+        SignupButton.setBackground(java.awt.Color.darkGray);
+        SignupButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SignupButton.setText("Sign Up");
+        SignupButton.setBorderPainted(false);
         SignupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SignupButtonActionPerformed(evt);
             }
         });
 
-        NoAccButton.setBackground(new java.awt.Color(102, 102, 102));
-        NoAccButton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        NoAccButton.setForeground(new java.awt.Color(255, 255, 255));
-        NoAccButton.setText("Already have an account? Log In");
-        NoAccButton.setToolTipText("");
-        NoAccButton.setAutoscrolls(true);
-        NoAccButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        NoAccButton.setDoubleBuffered(true);
-        NoAccButton.setFocusCycleRoot(true);
-        NoAccButton.setFocusTraversalPolicyProvider(true);
-        NoAccButton.setHideActionText(true);
-        NoAccButton.setInheritsPopupMenu(true);
-        NoAccButton.setVerifyInputWhenFocusTarget(false);
-        NoAccButton.addActionListener(new java.awt.event.ActionListener() {
+        HaveAccButton.setBackground(java.awt.Color.darkGray);
+        HaveAccButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        HaveAccButton.setText("Already have an account? Log In");
+        HaveAccButton.setBorderPainted(false);
+        HaveAccButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NoAccButtonActionPerformed(evt);
+                HaveAccButtonActionPerformed(evt);
             }
         });
 
@@ -356,13 +302,14 @@ public class SignupFrame extends javax.swing.JFrame {
         LFButtonsLayout.setHorizontalGroup(
             LFButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LFButtonsLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(LFButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NoAccButton)
                     .addGroup(LFButtonsLayout.createSequentialGroup()
-                        .addGap(107, 107, 107)
+                        .addGap(47, 47, 47)
+                        .addComponent(HaveAccButton))
+                    .addGroup(LFButtonsLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
                         .addComponent(SignupButton)))
-                .addContainerGap())
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         LFButtonsLayout.setVerticalGroup(
             LFButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,8 +317,8 @@ public class SignupFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(SignupButton)
                 .addGap(18, 18, 18)
-                .addComponent(NoAccButton)
-                .addContainerGap())
+                .addComponent(HaveAccButton)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout SignupFormLayout = new javax.swing.GroupLayout(SignupForm);
@@ -379,14 +326,16 @@ public class SignupFrame extends javax.swing.JFrame {
         SignupFormLayout.setHorizontalGroup(
             SignupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignupFormLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LFButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
-            .addGroup(SignupFormLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addComponent(SFText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(SFUserData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignupFormLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LFButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
+            .addGroup(SignupFormLayout.createSequentialGroup()
+                .addComponent(SFUserData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 29, Short.MAX_VALUE))
         );
         SignupFormLayout.setVerticalGroup(
             SignupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,20 +346,124 @@ public class SignupFrame extends javax.swing.JFrame {
                 .addComponent(SFUserData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LFButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         WVOS_Signup.setBackground(new java.awt.Color(51, 51, 51));
+
+        WVOS_Welcome.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        WVOS_Welcome.setText("Visual OETPN Simulator (VOS)");
+
+        WVOS_DesktopApp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        WVOS_DesktopApp.setText("Desktop Application");
+
+        WelcomeText.setEditable(false);
+        WelcomeText.setBackground(java.awt.Color.darkGray);
+        WelcomeText.setColumns(20);
+        WelcomeText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        WelcomeText.setRows(5);
+        WelcomeText.setText("Visual OETPN Simulator (short: VOS) is an open-source tool that helps students learning in \ntechnical fields to understand, design and simulate Object-Enhanced Timed Petri Nets \n(OETPNs).\n\nVisual OETPN Simulator was developed by Automation and Applied Informatics student, \nDragu Andreea, as a bachelor's thesis, including researches on Petri Nets (specifically \nOETPNs) and Desktop Development technologies and programming languages (Java, \nSwing, MySQL).\n\nAnd, the most important thing of all, Visual OETPN Simulator is completely free to use. The \nuser must create a new account to start using the tool, or if they already have an account, \nthey must log into their account.");
+        WelcomeText.setCaretColor(new java.awt.Color(0, 0, 0));
+        WelcomeText.setFocusable(false);
+        WVOS_Text.setViewportView(WelcomeText);
+
+        TextAboutOETPN.setText("To find out more about Petri Nets and OETPNs, please visit");
+
+        AboutOETPN.setText("VOS Web - About OETPNs.");
+
+        TextAboutVOS.setText("To find out more about Visual OETPN Simulator, please visit");
+
+        AboutVOS.setText("VOS Web - About VOS.");
+
+        TextAboutCreator1.setText("To find out more about the creator of this tool, please visit my");
+
+        GitHub.setText("GitHub");
+
+        TextAboutCreator2.setText("or");
+
+        LinkedIn.setText("LinkedIn");
+
+        TextAboutCreator3.setText("profiles.");
+
+        TextEmail1.setText("Or,");
+
+        Email.setText("e-mail");
+
+        TextEmail2.setText("me directly.");
 
         javax.swing.GroupLayout WVOS_SignupLayout = new javax.swing.GroupLayout(WVOS_Signup);
         WVOS_Signup.setLayout(WVOS_SignupLayout);
         WVOS_SignupLayout.setHorizontalGroup(
             WVOS_SignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 626, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WVOS_SignupLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(WVOS_Welcome)
+                .addGap(68, 68, 68))
+            .addGroup(WVOS_SignupLayout.createSequentialGroup()
+                .addGroup(WVOS_SignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(WVOS_SignupLayout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addComponent(WVOS_DesktopApp))
+                    .addGroup(WVOS_SignupLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(WVOS_SignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(WVOS_SignupLayout.createSequentialGroup()
+                                .addComponent(TextAboutOETPN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(AboutOETPN))
+                            .addGroup(WVOS_SignupLayout.createSequentialGroup()
+                                .addComponent(TextAboutVOS)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(AboutVOS))
+                            .addGroup(WVOS_SignupLayout.createSequentialGroup()
+                                .addComponent(TextAboutCreator1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(GitHub)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextAboutCreator2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LinkedIn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextAboutCreator3))
+                            .addGroup(WVOS_SignupLayout.createSequentialGroup()
+                                .addComponent(TextEmail1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Email)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextEmail2))
+                            .addComponent(WVOS_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         WVOS_SignupLayout.setVerticalGroup(
             WVOS_SignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
+            .addGroup(WVOS_SignupLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(WVOS_Welcome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(WVOS_DesktopApp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(WVOS_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(WVOS_SignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextAboutOETPN)
+                    .addComponent(AboutOETPN))
+                .addGap(18, 18, 18)
+                .addGroup(WVOS_SignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextAboutVOS)
+                    .addComponent(AboutVOS))
+                .addGap(18, 18, 18)
+                .addGroup(WVOS_SignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextAboutCreator1)
+                    .addComponent(GitHub)
+                    .addComponent(TextAboutCreator2)
+                    .addComponent(LinkedIn)
+                    .addComponent(TextAboutCreator3))
+                .addGap(18, 18, 18)
+                .addGroup(WVOS_SignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextEmail1)
+                    .addComponent(TextEmail2)
+                    .addComponent(Email))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -419,7 +472,7 @@ public class SignupFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(SignupForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(WVOS_Signup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -431,91 +484,17 @@ public class SignupFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Open the Login Form by pressing "Already Have An Account?" Button
-    private void NoAccButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoAccButtonActionPerformed
-        LoginFrame loginFrame = new LoginFrame();
-        loginFrame.pack();
-        loginFrame.setLocationRelativeTo(null);
-        loginFrame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_NoAccButtonActionPerformed
-
-    // Event for First Name Field (focus gained)
-    private void SFFNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SFFNameFieldFocusGained
-        if(SFFNameField.getForeground() == Color.gray) {
-            SFFNameField.setText("");
-            SFFNameField.setForeground(null);
-        }
-    }//GEN-LAST:event_SFFNameFieldFocusGained
-
-    // Event for First Name Field (focus lost)
-    private void SFFNameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SFFNameFieldFocusLost
-        setSFFNameFieldText();
-    }//GEN-LAST:event_SFFNameFieldFocusLost
-
-    // Event for Last Name Field (focus gained)
-    private void SFLNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SFLNameFieldFocusGained
-        if(SFLNameField.getForeground() == Color.gray) {
-            SFLNameField.setText("");
-            SFLNameField.setForeground(null);
-        }
-    }//GEN-LAST:event_SFLNameFieldFocusGained
-
-    // Event for Last Name Field (focus lost)
-    private void SFLNameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SFLNameFieldFocusLost
-        setSFLNameFieldText();
-    }//GEN-LAST:event_SFLNameFieldFocusLost
-
-    // Event for Email Field (focus gained)
-    private void SFEmailFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SFEmailFieldFocusGained
-        if(SFEmailField.getForeground() == Color.gray) {
-            SFEmailField.setText("");
-            SFEmailField.setForeground(null);
-        }
-    }//GEN-LAST:event_SFEmailFieldFocusGained
-
-    // Event for Email Field (focus lost)
-    private void SFEmailFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SFEmailFieldFocusLost
-        setSFEmailFieldText();
-    }//GEN-LAST:event_SFEmailFieldFocusLost
-
-    // Event for Pass Field (focus gained)
-    private void SFPassFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SFPassFieldFocusGained
-        if(SFPassField.getForeground() == Color.gray) {
-            SFPassField.setText("");
-            SFPassField.setForeground(null);
-        }
-    }//GEN-LAST:event_SFPassFieldFocusGained
-
-    // Event for Pass Field (focus lost)
-    private void SFPassFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SFPassFieldFocusLost
-        setSFPassFieldText();
-    }//GEN-LAST:event_SFPassFieldFocusLost
-
-    // Event for Repeat Password Field (focus gained)
-    private void SFRepPassFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SFRepPassFieldFocusGained
-        if(SFRepPassField.getForeground() == Color.gray) {
-            SFRepPassField.setText("");
-            SFRepPassField.setForeground(null);
-        }
-    }//GEN-LAST:event_SFRepPassFieldFocusGained
-
-    // Event for Repeat Password Field (focus lost)
-    private void SFRepPassFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SFRepPassFieldFocusLost
-        setSFRepPassFieldText();
-    }//GEN-LAST:event_SFRepPassFieldFocusLost
-
-    // Event for the Signup Button
+    // Event for Sign Up button (action performed - signs the user up in the tool)
     private void SignupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignupButtonActionPerformed
         setStarsInvisible();
         if(markEmptyFields()) {
             setJOptionPane();
-            JOptionPane.showMessageDialog(null, "Please enter all fields!", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please enter all fields!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if(!matchingPasswords()) {
             setJOptionPane();
-            JOptionPane.showMessageDialog(null, "Passwords should match!", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Passwords should match!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if(handler.insertUser(SFFNameField.getText(), 
@@ -523,7 +502,9 @@ public class SignupFrame extends javax.swing.JFrame {
                               SFEmailField.getText(), 
                               String.valueOf(SFPassField.getPassword()))) {
             setJOptionPane();
-            JOptionPane.showMessageDialog(null, "Sign Up Successful!", "Success!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Sign Up Successful! \nPlease log in to start using VOS!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            setVisible(false);
+            new LoginFrame().setLocationRelativeTo(null);
         }
         else {
             setJOptionPane();
@@ -531,66 +512,145 @@ public class SignupFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SignupButtonActionPerformed
 
+    // Event for HaveAcc button (action performed - opens the Log In form)
+    private void HaveAccButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HaveAccButtonActionPerformed
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.pack();
+        loginFrame.setLocationRelativeTo(null);
+        loginFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_HaveAccButtonActionPerformed
+
     // Function to setup the JOptionPane
     private void setJOptionPane() {
         uim.put("OptionPane.background",new ColorUIResource(51,51,51));
         uim.put("Panel.background",new ColorUIResource(51,51,51));
         uim.put("OptionPane.messageForeground", Color.white);
-        uim.put("Button.background", Color.gray);
+        uim.put("Button.background", Color.darkGray);
         uim.put("Button.foreground", Color.white);
     }
     
-    // Function to set the First Name field's text (focus gained / lost)
-    private void setSFFNameFieldText() {
-        if(SFFNameField.getText().isEmpty()) {
-            SFFNameField.setText("First Name");
-            SFFNameField.setForeground(Color.gray);
-        }
+    // Set homepage hyperlink
+    private void setHomepageHyperlink() {
+        WVOS_Welcome.setForeground(Color.orange.darker());
+        WVOS_Welcome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        WVOS_Welcome.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://visual-oetpn-simulator.netlify.app/index.html"));
+                }
+                catch(IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
     
-    // Function to set the Last Name field's text (focus gained / lost)
-    private void setSFLNameFieldText() {
-        if(SFLNameField.getText().isEmpty()) {
-            SFLNameField.setText("Last Name");
-            SFLNameField.setForeground(Color.gray);
-        }
+    // Set About OETPN hyperlink
+    private void setAboutOETPNHyperlink() {
+        AboutOETPN.setForeground(Color.orange.darker());
+        AboutOETPN.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        AboutOETPN.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://visual-oetpn-simulator.netlify.app/pages/about-oetpns.html"));
+                }
+                catch(IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                } 
+            }
+        });
     }
     
-    // Function to set the Email field's text (focus gained / lost)
-    private void setSFEmailFieldText() {
-        if(SFEmailField.getText().isEmpty()) {
-            SFEmailField.setText("E-mail");
-            SFEmailField.setForeground(Color.gray);
-        }
+    // Set About VOS hyperlink
+    private void setAboutVOSHyperlink() {
+        AboutVOS.setForeground(Color.orange.darker());
+        AboutVOS.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        AboutVOS.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://visual-oetpn-simulator.netlify.app/pages/about-vos.html"));
+                }
+                catch(IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
     
-    // Function to set the Pass field's text (focus gained / lost)
-    private void setSFPassFieldText() {
-        if(SFPassField.getText().isEmpty()) {
-            SFPassField.setText("Password");
-            SFPassField.setForeground(Color.gray);
-        }
+    // Set Github profile hyperlink
+    private void setGithubProfileHyperlink() {
+        GitHub.setForeground(Color.orange.darker());
+        GitHub.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        GitHub.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/draguleee"));
+                }
+                catch(IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
     
-    // Function to set the Repeat Password field's text (focus gained / lost)
-    private void setSFRepPassFieldText() {
-        if(SFRepPassField.getText().isEmpty()) {
-            SFRepPassField.setText("Password");
-            SFRepPassField.setForeground(Color.gray);
-        }
+    // Set Linkedin profile hyperlink
+    private void setLinkedinProfileHyperlink() {
+        LinkedIn.setForeground(Color.orange.darker());
+        LinkedIn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        LinkedIn.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/andreea-ioana-dragu-870a121a1/"));
+                }
+                catch(IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    // Set E-mail option
+    private void setEmailOption() {
+        Email.setForeground(Color.orange.darker());
+        Email.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        Email.addMouseListener(new MouseAdapter() {
+           public void mouseClicked(MouseEvent e) {
+               try {
+                   String message = "mailto:aandreid14@gmail.com";
+                   URI uri = URI.create(message);
+                   Desktop.getDesktop().mail(uri);
+               }
+               catch(IOException ex) {
+                   ex.printStackTrace();
+               }
+           } 
+        });
     }
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignupFrame().setVisible(true);
+                try {
+                    UIManager.setLookAndFeel(new FlatDarkLaf());
+                }
+                catch (UnsupportedLookAndFeelException ex) {
+                    System.out.println(" ");
+                }
+                SignupFrame.setDefaultLookAndFeelDecorated(true);
+                new SignupFrame();
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AboutOETPN;
+    private javax.swing.JLabel AboutVOS;
+    private javax.swing.JLabel Email;
+    private javax.swing.JLabel GitHub;
+    private javax.swing.JButton HaveAccButton;
     private javax.swing.JPanel LFButtons;
-    private javax.swing.JButton NoAccButton;
+    private javax.swing.JLabel LinkedIn;
     private javax.swing.JTextField SFEmailField;
     private javax.swing.JLabel SFEmailLabel;
     private javax.swing.JLabel SFEmailStar;
@@ -612,6 +672,17 @@ public class SignupFrame extends javax.swing.JFrame {
     private javax.swing.JPanel SFUserData;
     private javax.swing.JButton SignupButton;
     private javax.swing.JPanel SignupForm;
+    private javax.swing.JLabel TextAboutCreator1;
+    private javax.swing.JLabel TextAboutCreator2;
+    private javax.swing.JLabel TextAboutCreator3;
+    private javax.swing.JLabel TextAboutOETPN;
+    private javax.swing.JLabel TextAboutVOS;
+    private javax.swing.JLabel TextEmail1;
+    private javax.swing.JLabel TextEmail2;
+    private javax.swing.JLabel WVOS_DesktopApp;
     private javax.swing.JPanel WVOS_Signup;
+    private javax.swing.JScrollPane WVOS_Text;
+    private javax.swing.JLabel WVOS_Welcome;
+    private javax.swing.JTextArea WelcomeText;
     // End of variables declaration//GEN-END:variables
 }
