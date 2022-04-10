@@ -23,15 +23,20 @@ public class LoginFrame extends javax.swing.JFrame {
     
     // Class variables
     private static int userID = -1;
-    DatabaseHandler handler = null;
-    UIManager uim = new UIManager();
+    private DatabaseHandler handler = null;
+    private UIManager uim = new UIManager();
 
     // Constructor for LoginFrame
     public LoginFrame() {
+        
+        // Getting / creating the instance
         handler = DatabaseHandler.getInstance();
         initComponents();
         
+        // Setting the frame's title
         setTitle("Visual OETPN Simulator - Desktop Application (Log In)");
+        
+        // Set the JTextArea's focusable to false
         WelcomeText.setFocusable(false);
         
         // Set the hyperlinks
@@ -42,12 +47,12 @@ public class LoginFrame extends javax.swing.JFrame {
         setLinkedinProfileHyperlink();
         setEmailOption();
         
-        // Set the placeholders and visibility of the stars
+        // Set the placeholders
         setLFEmailFieldText();
         setLFPassFieldText();
-        setStarsInvisible();
         
         // Setup the frame (center location & visibility)
+        setStarsInvisible();
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -93,22 +98,24 @@ public class LoginFrame extends javax.swing.JFrame {
         LoginButton = new javax.swing.JButton();
         NoAccButton = new javax.swing.JButton();
         WVOS_Login = new javax.swing.JPanel();
+        WVOS_Title = new javax.swing.JPanel();
         WVOS_Welcome = new javax.swing.JLabel();
         WVOS_DesktopApp = new javax.swing.JLabel();
         WVOS_Text = new javax.swing.JScrollPane();
         WelcomeText = new javax.swing.JTextArea();
+        WVOS_Links = new javax.swing.JPanel();
         TextAboutOETPN = new javax.swing.JLabel();
         AboutOETPN = new javax.swing.JLabel();
         TextAboutVOS = new javax.swing.JLabel();
         AboutVOS = new javax.swing.JLabel();
         TextAboutCreator1 = new javax.swing.JLabel();
-        TextAboutCreator2 = new javax.swing.JLabel();
-        TextAboutCreator3 = new javax.swing.JLabel();
         GitHub = new javax.swing.JLabel();
+        TextAboutCreator2 = new javax.swing.JLabel();
         LinkedIn = new javax.swing.JLabel();
+        TextAboutCreator3 = new javax.swing.JLabel();
         TextEmail1 = new javax.swing.JLabel();
-        TextEmail2 = new javax.swing.JLabel();
         Email = new javax.swing.JLabel();
+        TextEmail2 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -273,7 +280,7 @@ public class LoginFrame extends javax.swing.JFrame {
         LoginFormLayout.setHorizontalGroup(
             LoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginFormLayout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(LFButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
             .addGroup(LoginFormLayout.createSequentialGroup()
@@ -301,11 +308,36 @@ public class LoginFrame extends javax.swing.JFrame {
         WVOS_Login.setBackground(new java.awt.Color(51, 51, 51));
         WVOS_Login.setForeground(new java.awt.Color(255, 255, 255));
 
+        WVOS_Title.setBackground(new java.awt.Color(51, 51, 51));
+
         WVOS_Welcome.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         WVOS_Welcome.setText("Visual OETPN Simulator (VOS)");
 
         WVOS_DesktopApp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         WVOS_DesktopApp.setText("Desktop Application");
+
+        javax.swing.GroupLayout WVOS_TitleLayout = new javax.swing.GroupLayout(WVOS_Title);
+        WVOS_Title.setLayout(WVOS_TitleLayout);
+        WVOS_TitleLayout.setHorizontalGroup(
+            WVOS_TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(WVOS_TitleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(WVOS_TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(WVOS_Welcome)
+                    .addGroup(WVOS_TitleLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(WVOS_DesktopApp)))
+                .addContainerGap())
+        );
+        WVOS_TitleLayout.setVerticalGroup(
+            WVOS_TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(WVOS_TitleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(WVOS_Welcome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(WVOS_DesktopApp)
+                .addContainerGap())
+        );
 
         WelcomeText.setEditable(false);
         WelcomeText.setBackground(java.awt.Color.darkGray);
@@ -317,6 +349,8 @@ public class LoginFrame extends javax.swing.JFrame {
         WelcomeText.setFocusable(false);
         WVOS_Text.setViewportView(WelcomeText);
 
+        WVOS_Links.setBackground(new java.awt.Color(51, 51, 51));
+
         TextAboutOETPN.setText("To find out more about Petri Nets and OETPNs, please visit");
 
         AboutOETPN.setText("VOS Web - About OETPNs.");
@@ -327,40 +361,36 @@ public class LoginFrame extends javax.swing.JFrame {
 
         TextAboutCreator1.setText("To find out more about the creator of this tool, please visit my");
 
-        TextAboutCreator2.setText("or");
-
-        TextAboutCreator3.setText("profiles.");
-
         GitHub.setText("GitHub");
+
+        TextAboutCreator2.setText("or");
 
         LinkedIn.setText("LinkedIn");
 
-        TextEmail1.setText("Or,");
+        TextAboutCreator3.setText("profiles.");
 
-        TextEmail2.setText("me directly.");
+        TextEmail1.setText("Or,");
 
         Email.setText("e-mail");
 
-        javax.swing.GroupLayout WVOS_LoginLayout = new javax.swing.GroupLayout(WVOS_Login);
-        WVOS_Login.setLayout(WVOS_LoginLayout);
-        WVOS_LoginLayout.setHorizontalGroup(
-            WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(WVOS_LoginLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(WVOS_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WVOS_LoginLayout.createSequentialGroup()
-                .addGap(12, 29, Short.MAX_VALUE)
-                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
+        TextEmail2.setText("me directly.");
+
+        javax.swing.GroupLayout WVOS_LinksLayout = new javax.swing.GroupLayout(WVOS_Links);
+        WVOS_Links.setLayout(WVOS_LinksLayout);
+        WVOS_LinksLayout.setHorizontalGroup(
+            WVOS_LinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(WVOS_LinksLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(WVOS_LinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(WVOS_LinksLayout.createSequentialGroup()
                         .addComponent(TextAboutOETPN)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(AboutOETPN))
-                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                    .addGroup(WVOS_LinksLayout.createSequentialGroup()
                         .addComponent(TextAboutVOS)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(AboutVOS))
-                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                    .addGroup(WVOS_LinksLayout.createSequentialGroup()
                         .addComponent(TextAboutCreator1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(GitHub)
@@ -370,53 +400,65 @@ public class LoginFrame extends javax.swing.JFrame {
                         .addComponent(LinkedIn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextAboutCreator3))
-                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                    .addGroup(WVOS_LinksLayout.createSequentialGroup()
                         .addComponent(TextEmail1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Email)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextEmail2)))
-                .addGap(140, 140, 140))
-            .addGroup(WVOS_LoginLayout.createSequentialGroup()
-                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(WVOS_Welcome))
-                    .addGroup(WVOS_LoginLayout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(WVOS_DesktopApp)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        WVOS_LoginLayout.setVerticalGroup(
-            WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(WVOS_LoginLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(WVOS_Welcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(WVOS_DesktopApp)
-                .addGap(18, 18, 18)
-                .addComponent(WVOS_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        WVOS_LinksLayout.setVerticalGroup(
+            WVOS_LinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(WVOS_LinksLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(WVOS_LinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextAboutOETPN)
                     .addComponent(AboutOETPN))
                 .addGap(18, 18, 18)
-                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(WVOS_LinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextAboutVOS)
                     .addComponent(AboutVOS))
                 .addGap(18, 18, 18)
-                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(WVOS_LinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextAboutCreator1)
                     .addComponent(GitHub)
                     .addComponent(TextAboutCreator2)
                     .addComponent(LinkedIn)
                     .addComponent(TextAboutCreator3))
                 .addGap(18, 18, 18)
-                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(WVOS_LinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextEmail1)
                     .addComponent(TextEmail2)
                     .addComponent(Email))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout WVOS_LoginLayout = new javax.swing.GroupLayout(WVOS_Login);
+        WVOS_Login.setLayout(WVOS_LoginLayout);
+        WVOS_LoginLayout.setHorizontalGroup(
+            WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(WVOS_Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WVOS_LoginLayout.createSequentialGroup()
+                .addGap(12, 30, Short.MAX_VALUE)
+                .addGroup(WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(WVOS_Links, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(WVOS_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
+        );
+        WVOS_LoginLayout.setVerticalGroup(
+            WVOS_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(WVOS_LoginLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(WVOS_Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(WVOS_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(WVOS_Links, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -664,8 +706,10 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel TextEmail1;
     private javax.swing.JLabel TextEmail2;
     private javax.swing.JLabel WVOS_DesktopApp;
+    private javax.swing.JPanel WVOS_Links;
     private javax.swing.JPanel WVOS_Login;
     private javax.swing.JScrollPane WVOS_Text;
+    private javax.swing.JPanel WVOS_Title;
     private javax.swing.JLabel WVOS_Welcome;
     private javax.swing.JTextArea WelcomeText;
     private javax.swing.JScrollPane jScrollPane1;

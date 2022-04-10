@@ -70,7 +70,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="61" max="32767" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
                   <Component id="LFButtons" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
@@ -355,56 +355,17 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="WVOS_Text" min="-2" pref="608" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                  <Component id="WVOS_Title" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="12" pref="29" max="32767" attributes="0"/>
+                  <EmptySpace min="12" pref="30" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="TextAboutOETPN" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="AboutOETPN" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="TextAboutVOS" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="AboutVOS" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="TextAboutCreator1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="GitHub" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TextAboutCreator2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="LinkedIn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TextAboutCreator3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="TextEmail1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Email" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TextEmail2" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="WVOS_Links" min="-2" max="-2" attributes="0"/>
+                      <Component id="WVOS_Text" min="-2" pref="608" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                          <Component id="WVOS_Welcome" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
-                          <Component id="WVOS_DesktopApp" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -412,57 +373,71 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="WVOS_Welcome" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="WVOS_DesktopApp" min="-2" max="-2" attributes="0"/>
+                  <Component id="WVOS_Title" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="WVOS_Text" min="-2" pref="211" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TextAboutOETPN" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="AboutOETPN" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TextAboutVOS" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="AboutVOS" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TextAboutCreator1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="GitHub" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TextAboutCreator2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="LinkedIn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TextAboutCreator3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TextEmail1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TextEmail2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Email" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="WVOS_Links" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="WVOS_Welcome">
+        <Container class="javax.swing.JPanel" name="WVOS_Title">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="36" style="0"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Visual OETPN Simulator (VOS)"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="WVOS_DesktopApp">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Desktop Application"/>
-          </Properties>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="WVOS_Welcome" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="WVOS_DesktopApp" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="WVOS_Welcome" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="WVOS_DesktopApp" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="WVOS_Welcome">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="36" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Visual OETPN Simulator (VOS)"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="WVOS_DesktopApp">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Desktop Application"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
         <Container class="javax.swing.JScrollPane" name="WVOS_Text">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -490,66 +465,147 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="TextAboutOETPN">
+        <Container class="javax.swing.JPanel" name="WVOS_Links">
           <Properties>
-            <Property name="text" type="java.lang.String" value="To find out more about Petri Nets and OETPNs, please visit"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="AboutOETPN">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="VOS Web - About OETPNs."/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="TextAboutVOS">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="To find out more about Visual OETPN Simulator, please visit"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="AboutVOS">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="VOS Web - About VOS."/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="TextAboutCreator1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="To find out more about the creator of this tool, please visit my"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="TextAboutCreator2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="or"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="TextAboutCreator3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="profiles."/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="GitHub">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="GitHub"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LinkedIn">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="LinkedIn"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="TextEmail1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Or,"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="TextEmail2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="me directly."/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="Email">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="e-mail"/>
-          </Properties>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="TextAboutOETPN" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="AboutOETPN" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="TextAboutVOS" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="AboutVOS" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="TextAboutCreator1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="GitHub" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="TextAboutCreator2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="LinkedIn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="TextAboutCreator3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="TextEmail1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Email" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="TextEmail2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TextAboutOETPN" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="AboutOETPN" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TextAboutVOS" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="AboutVOS" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TextAboutCreator1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="GitHub" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TextAboutCreator2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="LinkedIn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TextAboutCreator3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TextEmail1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TextEmail2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Email" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="TextAboutOETPN">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="To find out more about Petri Nets and OETPNs, please visit"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="AboutOETPN">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="VOS Web - About OETPNs."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TextAboutVOS">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="To find out more about Visual OETPN Simulator, please visit"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="AboutVOS">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="VOS Web - About VOS."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TextAboutCreator1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="To find out more about the creator of this tool, please visit my"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="GitHub">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="GitHub"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TextAboutCreator2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="or"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="LinkedIn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="LinkedIn"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TextAboutCreator3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="profiles."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TextEmail1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Or,"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Email">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="e-mail"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TextEmail2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="me directly."/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>
