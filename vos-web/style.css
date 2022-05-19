@@ -12,7 +12,22 @@ body {
   font-size: 28px;
 }
 
-/* Image logo styles */
+#center {
+  text-align: center;
+}
+
+#justify {
+  text-align: justify;
+}
+
+#left {
+  text-align: left;
+}
+
+#right {
+  text-align: right;
+}
+
 .logo {
   padding-top: 5px;
   padding-left: 10px;
@@ -106,6 +121,21 @@ li .dropdown {
   display: block;
 }
 
+/* Styles for the button component */ 
+.button {
+  background-color: #ffc180;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 2px solid gray;
+  padding: 20px 30px;
+  transition-duration: 0.5s;
+}
+
+.button:hover {
+  background-color: #8e4800;
+  color: #b2b2b2;
+}
+
 /* Styles for the h1 header */
 h1 {
   max-width: 100vh;
@@ -152,12 +182,12 @@ h4 {
 
 /* Style and animation for i tag */
 i {
-  font-size: 300px;
-  margin: 0;
+  font-size: 400px;
   position: relative;
   animation: fadeIn;
   animation-name: animation_i;
   animation-duration: 4s;
+  color: #b2b2b2;
 }
   
 /* Keyframes for i */
@@ -182,11 +212,11 @@ i {
 
 /* Styles for the p */
 p {
-  text-align: center;
+  text-align: justify;
 }
 
 /* Section styles */
-section{
+section {
   position: relative;
   min-height: 70vh;
   display: block;

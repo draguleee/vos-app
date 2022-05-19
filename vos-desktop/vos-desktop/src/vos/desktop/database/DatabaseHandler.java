@@ -16,7 +16,8 @@ public class DatabaseHandler {
     // Method to create connection
     private void createConnection() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/vosdesktop_db?" + "user=root&password=admin16&useSSL=false&allowPublicKeyRetrieval=True");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/vosdesktop_db?" + 
+                                               "user=root&password=admin16&useSSL=false&allowPublicKeyRetrieval=true");
         }
         catch(Exception e) {
             System.out.println("Create connectionn exception " + e.getMessage());

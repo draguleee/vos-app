@@ -492,6 +492,11 @@ public class MainFrame extends javax.swing.JFrame {
         About.add(jMenuItem59);
 
         jMenuItem60.setText("Go to Github");
+        jMenuItem60.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem60ActionPerformed(evt);
+            }
+        });
         About.add(jMenuItem60);
         About.add(jSeparator9);
 
@@ -598,6 +603,10 @@ public class MainFrame extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_ExitActionPerformed
+
+    private void jMenuItem60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem60ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem60ActionPerformed
 
     // Function to setup the JOptionPane
     private void setJOptionPane() {

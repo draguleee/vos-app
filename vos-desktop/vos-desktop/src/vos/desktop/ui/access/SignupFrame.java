@@ -1,7 +1,6 @@
 package vos.desktop.ui.access;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import com.mysql.cj.x.protobuf.MysqlxNotice.Warning.Level;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
