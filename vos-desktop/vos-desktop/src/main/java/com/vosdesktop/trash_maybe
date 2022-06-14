@@ -1,0 +1,39 @@
+
+    private void fileMenu() {
+        file = new JMenu();
+        file.setText("File");
+        menuBar.add(file);
+
+        newWindow = new JMenuItem(); newSimulation = new JMenuItem();
+        openSimulation = new JMenuItem();
+        save = new JMenuItem(); saveAs = new JMenuItem(); exportAs = new JMenu(); pdf = new JMenuItem(); png = new JMenuItem(); jpeg = new JMenuItem();
+        print = new JMenuItem();
+        restart = new JMenuItem(); close = new JMenuItem(); exit = new JMenuItem();
+
+        file.add(newWindow); file.add(newSimulation); file.add(new HorizontalSeparator());file.add(openSimulation);
+        file.add(new HorizontalSeparator());
+        file.add(save); file.add(saveAs); file.add(exportAs);
+        exportAs.add(pdf); exportAs.add(png); exportAs.add(jpeg);
+        file.add(new HorizontalSeparator());
+        file.add(print);
+        file.add(new HorizontalSeparator());
+        file.add(restart); file.add(close); file.add(exit);
+
+        newWindowOption(); newSimulationOption();
+        openSimulationOption();
+        saveOption(); saveAsOption(); exportAsMenu();
+        printOption();
+        restartOption(); closeOption(); exitOption();
+    }
+
+    private void newWindowOption() {
+            newWindow.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+            newWindow.setIcon(new javax.swing.ImageIcon("C:\\vos-app\\vos-desktop\\src\\main\\java\\com\\vosdesktop\\icons\\new-window.png")); // NOI18N
+            newWindow.setText("New Window");
+            newWindow.setToolTipText("Creates a new window");
+            newWindow.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) { NewWindowActionPerformed(evt); }
+            });;
+        }
+
+
