@@ -1,7 +1,9 @@
 package vosdesktop.frames;
 
-public class Simulator extends javax.swing.JFrame {
+import vosdesktop.components.simulator.editor.EditorPanel;
 
+public class Simulator extends javax.swing.JFrame {
+   
     public Simulator() {
         initComponents();
     }
@@ -15,23 +17,429 @@ public class Simulator extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tabbedPane = new javax.swing.JTabbedPane();
+        editorPanel = new javax.swing.JPanel();
+        toolBar = new javax.swing.JToolBar();
+        scrollPane1 = new javax.swing.JScrollPane();
+        tree = new javax.swing.JTree();
+        simulationPanel = new javax.swing.JPanel();
+        label = new javax.swing.JLabel();
+        scrollPane2 = new javax.swing.JScrollPane();
+        manager = new javax.swing.JTextArea();
+        menuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        newWindow = new javax.swing.JMenuItem();
+        newSimulation = new javax.swing.JMenuItem();
+        sep1 = new javax.swing.JPopupMenu.Separator();
+        openSimulation = new javax.swing.JMenuItem();
+        sep2 = new javax.swing.JPopupMenu.Separator();
+        save = new javax.swing.JMenuItem();
+        saveAs = new javax.swing.JMenuItem();
+        exportAs = new javax.swing.JMenu();
+        png = new javax.swing.JMenuItem();
+        jpeg = new javax.swing.JMenuItem();
+        sep3 = new javax.swing.JPopupMenu.Separator();
+        print = new javax.swing.JMenuItem();
+        sep4 = new javax.swing.JPopupMenu.Separator();
+        restart = new javax.swing.JMenuItem();
+        close = new javax.swing.JMenuItem();
+        exit = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
+        undo = new javax.swing.JMenuItem();
+        redo = new javax.swing.JMenuItem();
+        sep5 = new javax.swing.JPopupMenu.Separator();
+        cut = new javax.swing.JMenuItem();
+        copy = new javax.swing.JMenuItem();
+        paste = new javax.swing.JMenuItem();
+        delete = new javax.swing.JMenuItem();
+        sep6 = new javax.swing.JPopupMenu.Separator();
+        select = new javax.swing.JMenuItem();
+        selectAll = new javax.swing.JMenuItem();
+        drawMenu = new javax.swing.JMenu();
+        place = new javax.swing.JMenuItem();
+        immediateTransition = new javax.swing.JMenuItem();
+        timedTransition = new javax.swing.JMenuItem();
+        arc = new javax.swing.JMenuItem();
+        inhibitorArc = new javax.swing.JMenuItem();
+        annotation = new javax.swing.JMenuItem();
+        sep7 = new javax.swing.JPopupMenu.Separator();
+        addToken = new javax.swing.JMenuItem();
+        deleteToken = new javax.swing.JMenuItem();
+        simulateMenu = new javax.swing.JMenu();
+        animateMode = new javax.swing.JMenuItem();
+        editMode = new javax.swing.JMenuItem();
+        sep8 = new javax.swing.JPopupMenu.Separator();
+        backward = new javax.swing.JMenuItem();
+        forward = new javax.swing.JMenuItem();
+        animate = new javax.swing.JMenuItem();
+        aboutMenu = new javax.swing.JMenu();
+        getStarted = new javax.swing.JMenuItem();
+        documentation = new javax.swing.JMenuItem();
+        sep9 = new javax.swing.JPopupMenu.Separator();
+        goTo = new javax.swing.JMenu();
+        aboutSystems = new javax.swing.JMenuItem();
+        aboutPn = new javax.swing.JMenuItem();
+        aboutOetpn = new javax.swing.JMenuItem();
+        aboutVos = new javax.swing.JMenuItem();
+        sep10 = new javax.swing.JPopupMenu.Separator();
+        github = new javax.swing.JMenuItem();
+        linkedin = new javax.swing.JMenuItem();
+        email = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout editorPanelLayout = new javax.swing.GroupLayout(editorPanel);
+        editorPanel.setLayout(editorPanelLayout);
+        editorPanelLayout.setHorizontalGroup(
+            editorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 978, Short.MAX_VALUE)
+        );
+        editorPanelLayout.setVerticalGroup(
+            editorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 615, Short.MAX_VALUE)
+        );
+
+        tabbedPane.addTab("tab1", editorPanel);
+
+        toolBar.setRollover(true);
+
+        scrollPane1.setViewportView(tree);
+
+        label.setText("Simulation Manager");
+
+        manager.setBackground(new java.awt.Color(70, 73, 75));
+        manager.setColumns(20);
+        manager.setRows(5);
+        manager.setEnabled(false);
+        manager.setMaximumSize(new java.awt.Dimension(79, 74));
+        scrollPane2.setViewportView(manager);
+
+        javax.swing.GroupLayout simulationPanelLayout = new javax.swing.GroupLayout(simulationPanel);
+        simulationPanel.setLayout(simulationPanelLayout);
+        simulationPanelLayout.setHorizontalGroup(
+            simulationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(simulationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(simulationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(simulationPanelLayout.createSequentialGroup()
+                        .addComponent(label)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        simulationPanelLayout.setVerticalGroup(
+            simulationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(simulationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollPane2)
+                .addContainerGap())
+        );
+
+        fileMenu.setText("File");
+
+        newWindow.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        newWindow.setText("New Window...");
+        fileMenu.add(newWindow);
+
+        newSimulation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        newSimulation.setText("New Simulation...");
+        fileMenu.add(newSimulation);
+        fileMenu.add(sep1);
+
+        openSimulation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        openSimulation.setText("Open Simulation");
+        fileMenu.add(openSimulation);
+        fileMenu.add(sep2);
+
+        save.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        save.setText("Save ");
+        fileMenu.add(save);
+
+        saveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        saveAs.setText("Save As...");
+        fileMenu.add(saveAs);
+
+        exportAs.setText("Export As...");
+
+        png.setText("PNG");
+        exportAs.add(png);
+
+        jpeg.setText("JPEG");
+        exportAs.add(jpeg);
+
+        fileMenu.add(exportAs);
+        fileMenu.add(sep3);
+
+        print.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        print.setText("Print...");
+        fileMenu.add(print);
+        fileMenu.add(sep4);
+
+        restart.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        restart.setText("Restart VOS App");
+        fileMenu.add(restart);
+
+        close.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        close.setText("Close Current Window");
+        fileMenu.add(close);
+
+        exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        exit.setText("Exit VOS App");
+        fileMenu.add(exit);
+
+        menuBar.add(fileMenu);
+
+        editMenu.setText("Edit");
+
+        undo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        undo.setText("Undo");
+        editMenu.add(undo);
+
+        redo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        redo.setText("Redo");
+        editMenu.add(redo);
+        editMenu.add(sep5);
+
+        cut.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        cut.setText("Cut");
+        editMenu.add(cut);
+
+        copy.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        copy.setText("Copy");
+        editMenu.add(copy);
+
+        paste.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        paste.setText("Paste");
+        editMenu.add(paste);
+
+        delete.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
+        delete.setText("Delete");
+        editMenu.add(delete);
+        editMenu.add(sep6);
+
+        select.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, 0));
+        select.setText("Select");
+        editMenu.add(select);
+
+        selectAll.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        selectAll.setText("Select All");
+        editMenu.add(selectAll);
+
+        menuBar.add(editMenu);
+
+        drawMenu.setText("Draw");
+
+        place.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, 0));
+        place.setText("Place");
+        drawMenu.add(place);
+
+        immediateTransition.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, 0));
+        immediateTransition.setText("Immediate Transition");
+        drawMenu.add(immediateTransition);
+
+        timedTransition.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, 0));
+        timedTransition.setText("Timed Transition");
+        drawMenu.add(timedTransition);
+
+        arc.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, 0));
+        arc.setText("Arc");
+        drawMenu.add(arc);
+
+        inhibitorArc.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, 0));
+        inhibitorArc.setText("Inhibitor Arc");
+        drawMenu.add(inhibitorArc);
+
+        annotation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, 0));
+        annotation.setText("Annotation");
+        drawMenu.add(annotation);
+        drawMenu.add(sep7);
+
+        addToken.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ADD, 0));
+        addToken.setText("Add Token");
+        drawMenu.add(addToken);
+
+        deleteToken.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_SUBTRACT, 0));
+        deleteToken.setText("Delete Token");
+        drawMenu.add(deleteToken);
+
+        menuBar.add(drawMenu);
+
+        simulateMenu.setText("Simulate");
+
+        animateMode.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        animateMode.setText("Animate Mode");
+        animateMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                animateModeActionPerformed(evt);
+            }
+        });
+        simulateMenu.add(animateMode);
+
+        editMode.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SPACE, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        editMode.setText("Edit Mode");
+        simulateMenu.add(editMode);
+        simulateMenu.add(sep8);
+
+        backward.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, 0));
+        backward.setText("Backward");
+        simulateMenu.add(backward);
+
+        forward.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, 0));
+        forward.setText("Forward");
+        simulateMenu.add(forward);
+
+        animate.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_6, 0));
+        animate.setText("Animate");
+        simulateMenu.add(animate);
+
+        menuBar.add(simulateMenu);
+
+        aboutMenu.setText("About");
+
+        getStarted.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        getStarted.setText("Get Started");
+        aboutMenu.add(getStarted);
+
+        documentation.setText("Documentation");
+        aboutMenu.add(documentation);
+        aboutMenu.add(sep9);
+
+        goTo.setText("Go to...");
+
+        aboutSystems.setText("About Systems");
+        goTo.add(aboutSystems);
+
+        aboutPn.setText("About Petri Nets");
+        goTo.add(aboutPn);
+
+        aboutOetpn.setText("About OETPNs");
+        goTo.add(aboutOetpn);
+
+        aboutVos.setText("About VOS");
+        goTo.add(aboutVos);
+
+        aboutMenu.add(goTo);
+        aboutMenu.add(sep10);
+
+        github.setText("GitHub");
+        aboutMenu.add(github);
+
+        linkedin.setText("LinkedIn");
+        aboutMenu.add(linkedin);
+
+        email.setText("E-mail");
+        aboutMenu.add(email);
+
+        menuBar.add(aboutMenu);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(simulationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabbedPane)
+                .addContainerGap())
+            .addComponent(toolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(toolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tabbedPane)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(simulationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void animateModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animateModeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_animateModeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu aboutMenu;
+    private javax.swing.JMenuItem aboutOetpn;
+    private javax.swing.JMenuItem aboutPn;
+    private javax.swing.JMenuItem aboutSystems;
+    private javax.swing.JMenuItem aboutVos;
+    private javax.swing.JMenuItem addToken;
+    private javax.swing.JMenuItem animate;
+    private javax.swing.JMenuItem animateMode;
+    private javax.swing.JMenuItem annotation;
+    private javax.swing.JMenuItem arc;
+    private javax.swing.JMenuItem backward;
+    private javax.swing.JMenuItem close;
+    private javax.swing.JMenuItem copy;
+    private javax.swing.JMenuItem cut;
+    private javax.swing.JMenuItem delete;
+    private javax.swing.JMenuItem deleteToken;
+    private javax.swing.JMenuItem documentation;
+    private javax.swing.JMenu drawMenu;
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenuItem editMode;
+    private javax.swing.JPanel editorPanel;
+    private javax.swing.JMenuItem email;
+    private javax.swing.JMenuItem exit;
+    private javax.swing.JMenu exportAs;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuItem forward;
+    private javax.swing.JMenuItem getStarted;
+    private javax.swing.JMenuItem github;
+    private javax.swing.JMenu goTo;
+    private javax.swing.JMenuItem immediateTransition;
+    private javax.swing.JMenuItem inhibitorArc;
+    private javax.swing.JMenuItem jpeg;
+    private javax.swing.JLabel label;
+    private javax.swing.JMenuItem linkedin;
+    private javax.swing.JTextArea manager;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem newSimulation;
+    private javax.swing.JMenuItem newWindow;
+    private javax.swing.JMenuItem openSimulation;
+    private javax.swing.JMenuItem paste;
+    private javax.swing.JMenuItem place;
+    private javax.swing.JMenuItem png;
+    private javax.swing.JMenuItem print;
+    private javax.swing.JMenuItem redo;
+    private javax.swing.JMenuItem restart;
+    private javax.swing.JMenuItem save;
+    private javax.swing.JMenuItem saveAs;
+    private javax.swing.JScrollPane scrollPane1;
+    private javax.swing.JScrollPane scrollPane2;
+    private javax.swing.JMenuItem select;
+    private javax.swing.JMenuItem selectAll;
+    private javax.swing.JPopupMenu.Separator sep1;
+    private javax.swing.JPopupMenu.Separator sep10;
+    private javax.swing.JPopupMenu.Separator sep2;
+    private javax.swing.JPopupMenu.Separator sep3;
+    private javax.swing.JPopupMenu.Separator sep4;
+    private javax.swing.JPopupMenu.Separator sep5;
+    private javax.swing.JPopupMenu.Separator sep6;
+    private javax.swing.JPopupMenu.Separator sep7;
+    private javax.swing.JPopupMenu.Separator sep8;
+    private javax.swing.JPopupMenu.Separator sep9;
+    private javax.swing.JMenu simulateMenu;
+    private javax.swing.JPanel simulationPanel;
+    private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JMenuItem timedTransition;
+    private javax.swing.JToolBar toolBar;
+    private javax.swing.JTree tree;
+    private javax.swing.JMenuItem undo;
     // End of variables declaration//GEN-END:variables
 }
