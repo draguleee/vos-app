@@ -1,6 +1,13 @@
 package vosdesktop.components.mainframe.editor;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class WelcomePanel extends JPanel {
 
@@ -27,7 +34,31 @@ public class WelcomePanel extends JPanel {
         instructionsPane = new JScrollPane();
         links = new JLabel();
         vos = new JLabel();
+        vos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(e.getClickCount() == 1) {
+                    try {
+                        Desktop.getDesktop().browse(new URI("http://localhost/vosweb-nb/index.php"));
+                    } catch (IOException | URISyntaxException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
         repo = new JLabel();
+        repo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(e.getClickCount() == 1) {
+                    try {
+                        Desktop.getDesktop().browse(new URI("https://github.com/draguleee/vos-app/tree/vos-desktop"));
+                    } catch(IOException | URISyntaxException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
 
         welcome.setBackground(new java.awt.Color(255, 102, 0));
         welcome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N

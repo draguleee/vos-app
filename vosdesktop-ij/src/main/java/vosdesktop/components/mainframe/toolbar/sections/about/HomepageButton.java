@@ -14,7 +14,7 @@ public class HomepageButton extends AbstractButton {
         homepageButton = new JButton();
         setIcon(new javax.swing.ImageIcon("C:\\vos-app\\vosdesktop-ij\\src\\main\\java\\vosdesktop\\icons\\home.png"));
         setButton(homepageButton);
-        setToolTipText("Go forth one step");
+        setToolTipText("VOS Homepage");
     }
 
     public void setButton(JButton homepageButton) { this.homepageButton = homepageButton; }

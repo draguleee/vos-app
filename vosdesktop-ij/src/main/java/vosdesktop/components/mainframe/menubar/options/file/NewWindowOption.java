@@ -1,16 +1,14 @@
 package vosdesktop.components.mainframe.menubar.options.file;
 
 import vosdesktop.components.mainframe.menubar.abstracts.Option;
-import vosdesktop.frames.MainFrame;
+import vosdesktop.frames.Simulator;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class NewWindowOption extends Option {
 
     private JMenuItem newWindow;
-    private MainFrame mainFrame;
+    private Simulator mainFrame;
 
     public NewWindowOption() {
         initComponents();

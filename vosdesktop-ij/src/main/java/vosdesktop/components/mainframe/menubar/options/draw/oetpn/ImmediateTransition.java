@@ -9,7 +9,6 @@ public class ImmediateTransition implements Paintable {
 
     String name;
     Font font;
-    int weight;
     int priority;
 
     private Rectangle2D immediateTransition;
@@ -25,10 +24,6 @@ public class ImmediateTransition implements Paintable {
     }
 
     public void setName(String name) { this.name = name; }
-
-    public int getWeight() { return this.weight; }
-
-    public void setWeight(int weight) { this.weight = weight; }
 
     public int getPriority() { return this.priority; }
 
@@ -58,7 +53,6 @@ public class ImmediateTransition implements Paintable {
         double centreX = immediateTransition.getX() + immediateTransition.getWidth() / 2d;
         double centreY = immediateTransition.getY() + immediateTransition.getHeight() / 2d;
         g2.drawString(name, (int) (centreX - width / 2), (int) (centreY - 40));
-        g2.drawString("w = " + String.valueOf(weight), (int) (centreX - width / 2), (int) (centreY - 30));
         g2.drawString("p = " + String.valueOf(priority), (int)(centreX - width / 2), (int) (centreY -20));
 
         g2.dispose();

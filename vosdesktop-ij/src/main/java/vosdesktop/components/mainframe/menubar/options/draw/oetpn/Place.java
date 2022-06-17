@@ -8,10 +8,10 @@ import java.awt.geom.Rectangle2D;
 
 public class Place implements Paintable {
 
-    String name;
-    Font font;
-    int capacity;
-    int tokens;
+    private String name;
+    private Font font;
+    private int capacity;
+    private int tokens;
 
     private Ellipse2D place;
 

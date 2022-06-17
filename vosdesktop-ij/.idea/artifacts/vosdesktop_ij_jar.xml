@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="vosdesktop-ij:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/vosdesktop_ij_jar</output-path>
+    <root id="archive" name="vosdesktop.jar">
+      <element id="module-output" name="vosdesktop" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/mortennobel/java-image-scaling/0.8.5/java-image-scaling-0.8.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.19.4/protobuf-java-3.19.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.29/mysql-connector-java-8.0.29.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/formdev/flatlaf/2.3/flatlaf-2.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/jhlabs/filters/2.0.235/filters-2.0.235.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

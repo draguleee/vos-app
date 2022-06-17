@@ -20,5 +20,9 @@ public class AddTokenOption extends Option {
         setToolTipText("Add a token");
     }
 
+    public JMenuItem getAddTokenOption() {
+        return this.addToken;
+    }
+
     public void setOption(JMenuItem addToken) { this.addToken = addToken; }
 }
